@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('./dbConnections');
 const Blog = require('./blog');
-
+const PORT = process.env.PORT || 3000
 const app = express()
 app.use(express.json());
 
@@ -54,4 +54,4 @@ app.get('/', (req, res) => console.log(res.send("Heroku in your face")))
 //
 //
 
-app.listen(3000)
+app.listen(PORT, () => console.log(`listening on ${PORT}`))
