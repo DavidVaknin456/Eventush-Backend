@@ -43,7 +43,7 @@ app.get('/', (req, res) => console.log(res.send("Heroku in your face")))
 //         res.json(post);
 //     });
 // });
-
+//
 // app.get('/all-blog', (req, res) => {
 //     Blog.find()
 //         .then((result) => {
@@ -53,18 +53,5 @@ app.get('/', (req, res) => console.log(res.send("Heroku in your face")))
 // })
 //
 //
-// app.get('/add-blog', (req, res) => {
-//     const blog = new Blog({
-//         name: 'David',
-//         age: '25',
-//         city: 'Ramat  Gan',
-//     });
-//
-//     blog.save()
-//         .then((result) => {
-//             res.send(result)
-//         })
-//         .catch((err) => console.log(err))
-// })
 
 app.listen(3000)
