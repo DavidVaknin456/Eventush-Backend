@@ -20,6 +20,8 @@ app.post('/post', async (req, res)  => {
     console.log(val.body)
 })
 
+app.get('/', (req, res) => console.log(res.send("Heroku in your face")))
+
 // app.get('/all', (req, res) => {
 //     Blog.find()
 //         .then((result) => {
