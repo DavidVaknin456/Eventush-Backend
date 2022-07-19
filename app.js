@@ -33,12 +33,12 @@ app.post('/post', async (req, res)  => {
                     .then((result) => {
                         res.send(result)
                         console.log("user is added")
+                        res.json(val);
                     })
                     .catch((err) => {
                         console.log(err);
                         console.log("error in added user")
                     })
-                res.json(val);
             })
             .catch((error) => {
                 console.log(error);
