@@ -34,7 +34,7 @@ app.post('/post', async (req, res)  => {
                     .then(() => {
                         res.status(200).json(val);
                         console.log("user is added");
-                        console.log("-------------");
+                        console.log(val);
                     })
                     .catch((err) => {
                         console.log(err);
