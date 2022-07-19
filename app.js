@@ -3,6 +3,7 @@ const {getAuth} = require("firebase-admin/auth");
 const db = require('./dbConnections');
 const Blog = require('./blog');
 const admin = require("./firebaseAdminManager")
+const {json} = require("express");
 const PORT = process.env.PORT || 3000
 const app = express()
 app.use(express.json());
@@ -31,10 +32,9 @@ app.post('/post', async (req, res)  => {
                 console.log("1234")
                 const val = blog.save()
                     .then((result) => {
-                        res.send(result)
-                        console.log("user is added")
-                        res.json(val);
-                        console.log("-------------")
+                        res.status(result).json(val);
+                        console.log("user is added");
+                        console.log("-------------");
                     })
                     .catch((err) => {
                         console.log(err);
