@@ -28,11 +28,16 @@ app.post('/post', async (req, res)  => {
                     age: req.body.age,
                     city: req.body.city,
                 })
+                console.log("1234")
                 const val = blog.save()
                     .then((result) => {
                         res.send(result)
+                        console.log("user is added")
                     })
-                    .catch((err) => console.log(err))
+                    .catch((err) => {
+                        console.log(err);
+                        console.log("error in added user")
+                    })
                 res.json(val);
             })
             .catch((error) => {
