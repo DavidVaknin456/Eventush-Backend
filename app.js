@@ -29,9 +29,8 @@ app.post('/post', async (req, res)  => {
                     age: req.body.age,
                     city: req.body.city,
                 })
-                console.log("1234")
-                const val = blog.save()
-                    .then(() => {
+                blog.save()
+                    .then((val) => {
                         res.status(200).json(val);
                         console.log("user is added");
                         console.log(val);
