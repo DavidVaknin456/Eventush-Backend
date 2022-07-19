@@ -31,8 +31,8 @@ app.post('/post', async (req, res)  => {
                 })
                 console.log("1234")
                 const val = blog.save()
-                    .then((result) => {
-                        res.status(result).json(val);
+                    .then(() => {
+                        res.status(200).json(val);
                         console.log("user is added");
                         console.log("-------------");
                     })
