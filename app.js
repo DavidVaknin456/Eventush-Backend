@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/post', async (req, res)  => {
-    console.log("req post is active by user")
+    console.log("req post is active")
     const receivedToken = req.header('authorization');
     if (receivedToken) {
         const idToken = receivedToken.split(" ")[1];
@@ -52,7 +52,7 @@ app.post('/post', async (req, res)  => {
 
 
 app.get('/getUser', (req, res, next) => {
-    console.log("is reg is active by user")
+    console.log("getUser is active by user")
     const receivedToken = req.header('authorization');
     if (receivedToken) {
         const idToken = receivedToken.split(" ")[1];
@@ -62,6 +62,7 @@ app.get('/getUser', (req, res, next) => {
             .then((decodedToken) => {
                 Blog.findOne({uid: decodedToken.uid}).then((user) => {
                     res.json(user)
+                    console.log(user)
                 }).catch((error) => {
                     console.log(error);
                     res.param(null);
