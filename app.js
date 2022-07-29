@@ -52,7 +52,7 @@ app.post('/post', async (req, res)  => {
 
 
 app.get('/getUser', (req, res, next) => {
-    console.log("getUser is active by user")
+    console.log("getUser is active by user client")
     const receivedToken = req.header('authorization');
     if (receivedToken) {
         const idToken = receivedToken.split(" ")[1];
