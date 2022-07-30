@@ -63,12 +63,10 @@ app.get('/getUser', (req, res, next) => {
                 Blog.findOne({uid: decodedToken.uid}, function (err, user) {
                     if (err) {
                         console.log(err);
-                        console.log(res.send(false));
-                        console.log("this user is unregistered");
-                        res.send(false);
                     }
                     else {
                         console.log("success");
+                        if (user === null) res.send(false);
                         res.json(user);
                         console.log(user);
                     }
