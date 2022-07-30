@@ -65,13 +65,15 @@ app.get('/getUser', (req, res, next) => {
                     console.log(user)
                 }).catch((error) => {
                     console.log(error);
-                    res.send(false);
                     console.log(res.send(false));
                     console.log("this user is unregistered");
+                    res.send(false);
+
                 })
             })
             .catch((error) => {
                 console.log(error);
+                console.log("invalid token");
                 return res.sendStatus(403);
             });
     }
