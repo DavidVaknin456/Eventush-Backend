@@ -33,20 +33,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.14.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.11.43&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/davidv/workspace personal/tmp_node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "16.14.1",
+    "javascript.nodejs.core.library.typings.version": "16.11.43",
+    "last_opened_file_path": "/Users/davidv/workspace personal/tmp_node",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "copyright.filetypes.JavaScript",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Node.js.app.js">
     <configuration name="Unnamed" type="NodeJSConfigurationType" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
       <method v="2" />
@@ -80,7 +80,7 @@
       <workItem from="1658150378754" duration="370000" />
       <workItem from="1658183473455" duration="11490000" />
       <workItem from="1658363132490" duration="1017000" />
-      <workItem from="1658476795068" duration="12584000" />
+      <workItem from="1658476795068" duration="13465000" />
     </task>
     <servers />
   </component>

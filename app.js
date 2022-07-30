@@ -66,7 +66,10 @@ app.get('/getUser', (req, res, next) => {
                     }
                     else {
                         console.log("success");
-                        if (user === null) res.send(false);
+                        if (user === null) {
+                            console.log("the user is unregistered", user);
+                            res.send(false);
+                        }
                         res.json(user);
                         console.log(user);
                     }
