@@ -68,8 +68,9 @@ app.get('/getUser', (req, res, next) => {
                         res.send(false);
                     }
                     else {
-                        res.json(user)
-                        console.log(user)
+                        console.log("success");
+                        res.json(user);
+                        console.log(user);
                     }
             })}).catch((error) => {
                 console.log(error);
