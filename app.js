@@ -65,7 +65,7 @@ app.get('/getUser', (req, res, next) => {
                     console.log(user)
                 }).catch((error) => {
                     console.log(error);
-                    res.param(null);
+                    res.param(false);
                 })
             })
             .catch((error) => {
