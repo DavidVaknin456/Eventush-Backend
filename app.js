@@ -60,18 +60,18 @@ app.get('/getUser', (req, res, next) => {
         console.log(idToken)
         getAuth().verifyIdToken(idToken)
             .then((decodedToken) => {
-                Blog.findOne({uid: decodedToken.uid}).then((user) => {
-                    res.json(user)
-                    console.log(user)
-                }).catch((error) => {
-                    console.log(error);
-                    console.log(res.send(false));
-                    console.log("this user is unregistered");
-                    res.send(false);
-
-                })
-            })
-            .catch((error) => {
+                Blog.findOne({uid: decodedToken.uid}, function (err, user) {
+                    if (err) {
+                        console.log(err);
+                        console.log(res.send(false));
+                        console.log("this user is unregistered");
+                        res.send(false);
+                    }
+                    else {
+                        res.json(user)
+                        console.log(user)
+                    }
+            })}).catch((error) => {
                 console.log(error);
                 console.log("invalid token");
                 return res.sendStatus(403);
