@@ -66,6 +66,8 @@ app.get('/getUser', (req, res, next) => {
                 }).catch((error) => {
                     console.log(error);
                     res.param(false);
+                    console.log(res.param(false));
+                    console.log("this user is unregistered");
                 })
             })
             .catch((error) => {
