@@ -89,11 +89,12 @@ app.post('/add-Event', async (req, res)  => {
     console.log("addEvent post is active")
     const receivedToken = req.header('authorization');
     if (receivedToken) {
-        const idToken = receivedToken.split(" ")[1];
+        const idTokenGetFromClient = receivedToken.split(" ")[1];
         // idToken comes from the client app
-        console.log(idToken)
-        getAuth().verifyIdToken(idToken)
+        console.log(idTokenGetFromClient)
+        getAuth().verifyIdToken(idTokenGetFromClient)
             .then((decodedToken) => {
+                console.log(decodedToken.uid)
                 const event = new Event({
                     orgId: decodedToken.uid,
                     category: req.body.category,

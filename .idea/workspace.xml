@@ -4,11 +4,6 @@
     <list default="true" id="e1d402ef-f6d0-4b54-aedc-99ab4bac39fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbConnections.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/dbConnections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebaseAdminManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/util/firebaseAdminManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +91,7 @@
       <workItem from="1659273065244" duration="2030000" />
       <workItem from="1659900572694" duration="7756000" />
       <workItem from="1660304711041" duration="1693000" />
-      <workItem from="1660510580016" duration="5582000" />
+      <workItem from="1660510580016" duration="6597000" />
     </task>
     <servers />
   </component>
