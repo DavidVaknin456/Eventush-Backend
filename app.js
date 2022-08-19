@@ -1,18 +1,19 @@
 const express = require('express');
 const {getAuth} = require("firebase-admin/auth");
-const db = require('./dbConnections');
-const Blog = require('./blog');
-const admin = require("./firebaseAdminManager")
+const db = require('./db/dbConnections');
+const {Blog} = require('./db/blog');
+const {Event} = require('./db/blog');
+const admin = require("./util/firebaseAdminManager")
 const {json} = require("express");
 const PORT = process.env.PORT || 3000
 const app = express()
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send("Heroku in your face")
     console.log("Basic get");
 });
-
 
 app.post('/post', async (req, res)  => {
     console.log("req post is active")
@@ -50,7 +51,6 @@ app.post('/post', async (req, res)  => {
     }
 })
 
-
 app.get('/getUser', (req, res, next) => {
     console.log("getUser is active by user client")
     const receivedToken = req.header('authorization');
@@ -85,21 +85,48 @@ app.get('/getUser', (req, res, next) => {
 
 });
 
-// app.get('/all-blog', (req, res) => {
-//     Blog.find()
-//         .then((result) => {
-//             res.send(result)
-//         })
-//         .catch((err) => console.log(err))
-// })
-//
+app.post('/add-Event', async (req, res)  => {
+    console.log("addEvent post is active")
+    const receivedToken = req.header('authorization');
+    if (receivedToken) {
+        const idToken = receivedToken.split(" ")[1];
+        // idToken comes from the client app
+        console.log(idToken)
+        getAuth().verifyIdToken(idToken)
+            .then((decodedToken) => {
+                const event = new Event({
+                    orgId: decodedToken.uid,
+                    category: req.body.category,
+                    date: req.body.date,
+                    location: req.body.location,
+                    minAge: req.body.minAge,
+                    description: req.body.description
+                })
+                event.save().then((val) => {
+                    res.status(200).json(val);
+                    console.log("user is added");
+                    console.log(val);
+                })
+                    .catch((err) => {
+                        console.log(err);
+                        console.log("error in added user")
+                    })
+            })
+            .catch((error) => {
+                console.log(error);
+                res.sendStatus(403);
+            });
+    }
+    else {
+        res.sendStatus(401);
+    }
+})
 
-// app.get('/all', (req, res) => {
-//     Blog.find()
-//         .then((result) => {
-//             res.send(result)
-//         })
-//         .catch((err) => console.log(err))
-// });
+app.get("/events", async (req, res) => {
+    const events = await Event.find();
+
+    console.log(events[0])
+    return res.status(200).json(events);
+});
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`))
