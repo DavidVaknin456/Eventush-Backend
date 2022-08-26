@@ -81,7 +81,7 @@ router.put("/addMember", (req, res) => {
       .verifyIdToken(idToken)
       .then(async (decodedToken) => {
         // add uid as a member
-        const filter = { orgID: req.body.orgID };
+        const filter = { _id: req.body._id };
         const update = { $push: { members: [decodedToken.uid] } };
 
         console.log(filter);
