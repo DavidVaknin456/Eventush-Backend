@@ -19,37 +19,6 @@ let blogSchema = new schema({
     },
 }, {timestamps: true});
 
-// let eventSchema = new schema({
-//     orgID: {
-//         type: String,
-//         required: true
-//     },
-//     category:  {
-//         type: String,
-//         required: true
-//     },
-//     date:  {
-//         type: String,
-//         required: true},
-//     location:  {
-//         type: String,
-//         required: true
-//     },
-//     description: {
-//         type: String,
-//         required: true
-//     },
-//     minAge: {
-//       type: Number,
-//       required: true
-//     },
-//     members:  {
-//         type: [String],
-//     },
-//     isEventApproved: {
-//         type: Boolean
-//     }
-// }, {timestamps: true});
 
 let BlogSchema = mongoose.model('Blog', blogSchema);
 

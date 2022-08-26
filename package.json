@@ -4,12 +4,13 @@
   "dependencies": {
     "express": "^4.18.1",
     "firebase-admin": "^11.0.0",
-    "mongoose": "^6.4.4"
+    "mongoose": "^6.4.4",
+    "pretier": "^0.0.1"
   },
   "scripts": {
     "start": "node app.js"
   },
   "devDependencies": {
-    "prettier": "^2.7.1"
+    "prettier": "2.7.1"
   }
 }
