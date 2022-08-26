@@ -1,24 +1,6 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-let blogSchema = new schema({
-    uid:  {
-        type: String,
-        required: true
-    },
-    name:  {
-        type: String,
-        required: true
-    },
-    age:  {
-        type: String,
-        required: true},
-    city:  {
-        type: String,
-        required: true
-    },
-}, {timestamps: true});
-
 let eventSchema = new schema({
     orgID: {
         type: String,
@@ -40,15 +22,18 @@ let eventSchema = new schema({
         required: true
     },
     minAge: {
-      type: Number,
-      required: true
+        type: Number,
+        required: true
     },
     members:  {
         type: [String],
     },
+    isEventApproved: {
+        type: Boolean,
+        required: true
+    }
 }, {timestamps: true});
 
-let Blog = mongoose.model('Blog', blogSchema);
 let Event = mongoose.model('Event', eventSchema);
 
-module.exports = {Blog, Event};
+module.exports = { Event };
