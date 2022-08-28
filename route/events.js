@@ -2,6 +2,7 @@ const { getAuth } = require("firebase-admin/auth");
 const { Event } = require("../db/Collections/EventSchema");
 const express = require("express");
 const router = express.Router();
+const verifyToken = require("../util/verifyToken");
 
 // Get Events
 router.get("/events", async (req, res) => {
@@ -14,7 +15,7 @@ router.get("/events", async (req, res) => {
     getAuth()
       .verifyIdToken(idToken)
       .then(async (decodedToken) => {
-        const events = await Event.find();
+        const events = await Event.find({ members: { $ne: decodedToken.uid } });
         console.log(events);
         return res.status(200).json(events);
       })
@@ -70,31 +71,27 @@ router.post("/add-Event", async (req, res) => {
   }
 });
 
-router.put("/addMember", (req, res) => {
-  console.log("put member events");
+router.put("/addMember", async (req, res) => {
+  console.log("put member events ");
   const receivedToken = req.header("authorization");
-  if (receivedToken) {
-    const idToken = receivedToken.split(" ")[1];
-    // idToken comes from the client app
-    console.log(idToken);
-    getAuth()
-      .verifyIdToken(idToken)
-      .then(async (decodedToken) => {
-        // add uid as a member
-        const filter = { _id: req.body._id };
-        const update = { $push: { members: [decodedToken.uid] } };
+  const useridOrNO = await verifyToken(receivedToken);
+  // add uid as a member
+  console.log(useridOrNO);
+  let doc = null;
+  const addMember = async () => {
+    const filter = { _id: req.body._id };
+    const update = { $push: { members: [useridOrNO] } };
+    console.log(filter);
+    doc = await Event.findOneAndUpdate(filter, update);
+  };
 
-        console.log(filter);
-
-        let doc = await Event.findOneAndUpdate(filter, update);
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("invalid token");
-        return res.sendStatus(403);
-      });
+  if (useridOrNO !== 403 && useridOrNO !== 401) {
+    console.log("add Member");
+    await addMember();
+    res.sendStatus(200);
   } else {
-    res.sendStatus(401);
+    res.sendStatus(useridOrNO);
   }
 });
+
 module.exports = router;
