@@ -47,6 +47,8 @@ router.post("/add-Event", async (req, res) => {
           date: req.body.date,
           location: req.body.location,
           minAge: req.body.minAge,
+          minMembers: req.body.minMembers,
+          maxMembers: req.body.maxMembers,
           description: req.body.description,
           isEventApproved: req.body.isEventApproved,
         });
@@ -89,6 +91,26 @@ router.put("/addMember", async (req, res) => {
     console.log("add Member");
     await addMember();
     res.sendStatus(200);
+  } else {
+    res.sendStatus(useridOrNO);
+  }
+});
+
+router.get("/myEvents", async (req, res) => {
+  console.log("get myEvents");
+  const receivedToken = req.header("authorization");
+  const useridOrNO = await verifyToken(receivedToken);
+
+  console.log(useridOrNO);
+  let doc = null;
+  const returnMyEvents = async () => {
+    doc = await Event.find({ members: { $in: [useridOrNO] } });
+  };
+
+  if (useridOrNO !== 403 && useridOrNO !== 401) {
+    console.log("add Member");
+    await returnMyEvents();
+    res.status(200).json(doc);
   } else {
     res.sendStatus(useridOrNO);
   }
