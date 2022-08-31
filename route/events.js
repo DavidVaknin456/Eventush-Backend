@@ -116,4 +116,24 @@ router.get("/myEvents", async (req, res) => {
   }
 });
 
+router.get("/adminEvents", async (req, res) => {
+  console.log("get adminEvents");
+  const receivedToken = req.header("authorization");
+  const useridOrNO = await verifyToken(receivedToken);
+
+  console.log(useridOrNO);
+  let doc = null;
+  const returnAdminEvents = async () => {
+    doc = await Event.find({ orgID: { $in: [useridOrNO] } });
+  };
+
+  if (useridOrNO !== 403 && useridOrNO !== 401) {
+    console.log("add Member");
+    await returnAdminEvents();
+    res.status(200).json(doc);
+  } else {
+    res.sendStatus(useridOrNO);
+  }
+});
+
 module.exports = router;
