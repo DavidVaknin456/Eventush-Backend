@@ -75,21 +75,28 @@ router.post("/add-Event", async (req, res) => {
 
 router.put("/addMember", async (req, res) => {
   console.log("put member events ");
-  const receivedToken = req.header("authorization");
-  const useridOrNO = await verifyToken(receivedToken);
-  // add uid as a member
-  console.log(useridOrNO);
+  const useridOrNO = await verifyToken(req.header("authorization"));
+  const eventDoc = req.body;
+
   let doc = null;
-  const addMember = async () => {
+  const addMember = async (isApproved) => {
     const filter = { _id: req.body._id };
-    const update = { $push: { members: [useridOrNO] } };
+    const update = {
+      $push: { members: [useridOrNO] },
+    };
     console.log(filter);
-    doc = await Event.findOneAndUpdate(filter, update);
+    doc = await Event.updateOne(filter, update);
+    doc = await Event.updateOne(filter, {
+      $set: { isEventApproved: isApproved },
+    });
   };
 
   if (useridOrNO !== 403 && useridOrNO !== 401) {
-    console.log("add Member");
-    await addMember();
+    if (eventDoc.members.length + 1 < eventDoc.maxMembers) {
+      await addMember(false);
+    } else {
+      await addMember(true);
+    }
     res.sendStatus(200);
   } else {
     res.sendStatus(useridOrNO);
@@ -98,17 +105,38 @@ router.put("/addMember", async (req, res) => {
 
 router.get("/myEvents", async (req, res) => {
   console.log("get myEvents");
-  const receivedToken = req.header("authorization");
-  const useridOrNO = await verifyToken(receivedToken);
+  const useridOrNO = await verifyToken(req.header("authorization"));
+
+  let doc = null;
+  const returnMyEvents = async () => {
+    doc = await Event.find({
+      members: { $in: [useridOrNO] },
+      isEventApproved: { $in: false },
+    });
+  };
+
+  if (useridOrNO !== 403 && useridOrNO !== 401) {
+    await returnMyEvents();
+    res.status(200).json(doc);
+  } else {
+    res.sendStatus(useridOrNO);
+  }
+});
+
+router.get("/approvedEvents", async (req, res) => {
+  console.log("get ApprovedEvents");
+  const useridOrNO = await verifyToken(req.header("authorization"));
 
   console.log(useridOrNO);
   let doc = null;
   const returnMyEvents = async () => {
-    doc = await Event.find({ members: { $in: [useridOrNO] } });
+    doc = await Event.find({
+      members: { $in: [useridOrNO] },
+      isEventApproved: { $in: true },
+    });
   };
 
   if (useridOrNO !== 403 && useridOrNO !== 401) {
-    console.log("add Member");
     await returnMyEvents();
     res.status(200).json(doc);
   } else {
@@ -118,17 +146,14 @@ router.get("/myEvents", async (req, res) => {
 
 router.get("/adminEvents", async (req, res) => {
   console.log("get adminEvents");
-  const receivedToken = req.header("authorization");
-  const useridOrNO = await verifyToken(receivedToken);
+  const useridOrNO = await verifyToken(req.header("authorization"));
 
-  console.log(useridOrNO);
   let doc = null;
   const returnAdminEvents = async () => {
     doc = await Event.find({ orgID: { $in: [useridOrNO] } });
   };
 
   if (useridOrNO !== 403 && useridOrNO !== 401) {
-    console.log("add Member");
     await returnAdminEvents();
     res.status(200).json(doc);
   } else {
