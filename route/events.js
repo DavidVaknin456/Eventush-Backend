@@ -161,4 +161,52 @@ router.get("/adminEvents", async (req, res) => {
   }
 });
 
+router.put("/closeRegistration", async (req, res) => {
+  console.log("closeRegistration admin");
+  const useridOrNO = await verifyToken(req.header("authorization"));
+  const eventDoc = req.body;
+
+  let doc = null;
+  const approvedEvent = async (isApproved) => {
+    const filter = { _id: req.body._id };
+    console.log(filter);
+    doc = await Event.updateOne(filter, {
+      $set: { isEventApproved: isApproved },
+    });
+  };
+
+  if (useridOrNO !== 403 && useridOrNO !== 401) {
+    if (
+      eventDoc.members.length >= eventDoc.minMembers &&
+      eventDoc.members.length < eventDoc.maxMembers
+    ) {
+      await approvedEvent(true);
+    } else {
+      await approvedEvent(false);
+    }
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(useridOrNO);
+  }
+});
+
+router.delete("/deleteEvent", async (req, res) => {
+  console.log("deleteEvent admin");
+  const useridOrNO = await verifyToken(req.header("authorization"));
+  console.log(req.body);
+  let doc = null;
+  const deleteEvent = async () => {
+    const filter = { _id: req.body.id };
+    console.log(filter);
+    doc = await Event.deleteOne(filter);
+  };
+
+  if (useridOrNO !== 403 && useridOrNO !== 401) {
+    await deleteEvent();
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(useridOrNO);
+  }
+});
+
 module.exports = router;
