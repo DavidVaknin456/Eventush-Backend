@@ -12,4 +12,9 @@ router.get("/video/progressive/cfid-111_stid-222_end.mp4", (req, res) => {
   console.log("res.sendStatus(500)");
 });
 
+router.get("/video/progressive/cfid-111_stid-25522_end.mp4", (req, res) => {
+  res.sendStatus(200);
+  console.log("res.sendStatus(500)");
+});
+
 module.exports = router;
