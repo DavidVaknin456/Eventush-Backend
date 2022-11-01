@@ -150,10 +150,10 @@ router.put("/RemoveEvent", async (req, res) => {
     const eventDoc = req.body;
 
     let doc = null;
-    const approvedEvent = async (isApproved) => {
+    const removeMemberEvent = async () => {
         const filter = {_id: req.body._id};
         const update = {
-            $pull: {members: [useridOrNO]},
+            $pull: {members: useridOrNO},
         };
         console.log(filter);
         doc = await Event.updateOne(filter, update);
@@ -163,7 +163,7 @@ router.put("/RemoveEvent", async (req, res) => {
     };
 
     if (useridOrNO !== 403 && useridOrNO !== 401) {
-        await approvedEvent();
+        await removeMemberEvent();
         res.sendStatus(200);
 
     } else {
