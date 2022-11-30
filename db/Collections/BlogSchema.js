@@ -2,18 +2,20 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 let blogSchema = new schema({
-    uid:  {
+    uid: {
         type: String,
         required: true
     },
-    name:  {
+    name: {
         type: String,
         required: true
     },
-    age:  {
+    location: {type: JSON, required: true},
+    age: {
         type: String,
-        required: true},
-    city:  {
+        required: true
+    },
+    city: {
         type: String,
         required: true
     },

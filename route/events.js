@@ -170,6 +170,8 @@ router.put("/RemoveEvent", async (req, res) => {
         res.sendStatus(useridOrNO);
     }
 });
+
+
 // admin Events
 router.get("/adminEvents", async (req, res) => {
     console.log("get adminEvents");

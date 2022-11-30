@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e1d402ef-f6d0-4b54-aedc-99ab4bac39fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/Collections/BlogSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/Collections/BlogSchema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/route/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/route/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +115,8 @@
       <workItem from="1663745894673" duration="2224000" />
       <workItem from="1667309183411" duration="750000" />
       <workItem from="1667310427696" duration="231000" />
-      <workItem from="1667313456607" duration="5356000" />
+      <workItem from="1667313456607" duration="6271000" />
+      <workItem from="1669772434549" duration="811000" />
     </task>
     <servers />
   </component>
@@ -130,17 +133,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/route/user.js</url>
-          <line>10</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
